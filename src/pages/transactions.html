@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FinanceManager — Транзакції</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="../index.html">Finance<span>Manager</span></a>
+      <nav class="nav" aria-label="Головне меню">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="../index.html">Головна</a></li>
+          <li><a class="nav__link" href="accounts.html">Рахунки</a></li>
+          <li><a class="nav__link nav__link--active" href="transactions.html">Транзакції</a></li>
+          <li><a class="nav__link" href="categories.html">Категорії</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="main container">
+    <!-- 1. Заголовок сторінки (h1) -->
+    <section class="page-header">
+      <h1 class="page-title">Аналіз та історія транзакцій</h1>
+      <p class="page-subtitle">Детальний огляд фінансових операцій, аналітика та фінансові поради.</p>
+    </section>
+
+    <!-- 2. Цитата (blockquote) -->
+    <section class="content-block">
+      <blockquote class="quote">
+        <p>«Правильне управління фінансами — це не про відмову від задоволень, а про свідомий розподіл ресурсів для досягнення довгострокових цілей.»</p>
+        <cite>— Фінансовий путівник FinanceManager</cite>
+      </blockquote>
+    </section>
+
+    <!-- 3. Зображення з підписом (figure, img, figcaption) -->
+    <section class="content-block">
+      <figure class="media-card">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Графіки аналізу доходів і витрат на екрані" class="media-card__img">
+        <figcaption class="media-card__caption">Мал. 1. Наочна візуалізація щомісячної структури витрат та заощаджень.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 4. Списки (ul, ol) та заголовки (h2, h3) -->
+    <section class="content-block">
+      <h2 class="section__title">Рекомендації щодо ведення обліку</h2>
+      
+      <div class="lists-grid">
+        <div class="list-card">
+          <h3>Основні правила:</h3>
+          <ul class="styled-list styled-list--bullet">
+            <li>Фіксувати всі витрати одразу після здійснення операції.</li>
+            <li>Розподіляти доходи за категоріями (50/30/20).</li>
+            <li>Формувати фінансову «подушку безпеки».</li>
+          </ul>
+        </div>
+
+        <div class="list-card">
+          <h3>Кроки аналізу щомісячного бюджету:</h3>
+          <ol class="styled-list styled-list--number">
+            <li>Звірити підсумкові суми доходів та витрат.</li>
+            <li>Виявити категорії з перевищенням ліміту.</li>
+            <li>Спланувати бюджет на наступний місяць.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Семантична таблиця (table) -->
+    <section class="content-block">
+      <h2 class="section__title">Останні фінансові операції</h2>
+      
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Дата</th>
+              <th>Категорія</th>
+              <th>Опис</th>
+              <th>Тип</th>
+              <th>Сума ($)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>24.10.2026</td>
+              <td>Зарплата</td>
+              <td>Acme Co. Payroll</td>
+              <td><span class="badge badge--income">Дохід</span></td>
+              <td class="amount amount--income">+$4,850.00</td>
+            </tr>
+            <tr>
+              <td>23.10.2026</td>
+              <td>Продукти</td>
+              <td>Супермаркет «Сільпо»</td>
+              <td><span class="badge badge--expense">Витрата</span></td>
+              <td class="amount amount--expense">-$120.50</td>
+            </tr>
+            <tr>
+              <td>21.10.2026</td>
+              <td>Транспорт</td>
+              <td>Заправка АЗС</td>
+              <td><span class="badge badge--expense">Витрата</span></td>
+              <td class="amount amount--expense">-$65.00</td>
+            </tr>
+            <tr>
+              <td>19.10.2026</td>
+              <td>Розваги</td>
+              <td>Квитки у кінотеатр</td>
+              <td><span class="badge badge--expense">Витрата</span></td>
+              <td class="amount amount--expense">-$35.00</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">Підсумок за період:</td>
+              <td class="amount amount--income">+$4,629.50</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© 2026 FinanceManager. Усі права захищені.</p>
+      <ul class="footer__list">
+        <li><a href="#">Про нас</a></li>
+        <li><a href="#">Контакти</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

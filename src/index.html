@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FinanceManager — Головна</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html">Finance<span>Manager</span></a>
+      <nav class="nav" aria-label="Головне меню">
+        <ul class="nav__list">
+          <li><a class="nav__link nav__link--active" href="index.html">Головна</a></li>
+          <li><a class="nav__link" href="pages/accounts.html">Рахунки</a></li>
+          <li><a class="nav__link" href="pages/transactions.html">Транзакції</a></li>
+          <li><a class="nav__link" href="pages/categories.html">Категорії</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="main container">
+    
+    <!-- 1. Банер на всю ширину (Загальний баланс / Hero-блок) -->
+    <section class="balance-card">
+      <div class="balance-card__top">
+        <div>
+          <span class="balance-card__label">ЗАГАЛЬНА ВАРТІСТЬ</span>
+          <h1 class="balance-card__amount">$84,320.65</h1>
+          <p class="balance-card__trend">↗ $2,481.20 цього місяця</p>
+        </div>
+        <a class="btn btn--primary" href="pages/transactions.html">+ Додати транзакцію</a>
+      </div>
+      <div class="balance-card__stats">
+        <div class="stat-item">
+          <span class="stat-label">Доходи</span>
+          <span class="stat-value stat-value--income">$7,240</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Витрати</span>
+          <span class="stat-value stat-value--expense">$3,186</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Темп заощадження</span>
+          <span class="stat-value">31.4%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Блок із чотирьох переваг (Можливості системи) засобами CSS Grid -->
+    <section class="section">
+      <h2 class="section__title" style="margin-bottom: 20px;">Можливості системи</h2>
+      <div class="dashboard-grid">
+        
+        <article class="card">
+          <h3>📊 Аналітика</h3>
+          <p>Контроль доходи/витрати в реальному часі.</p>
+        </article>
+
+        <article class="card">
+          <h3>🏛️ Рахунки</h3>
+          <p>Управління картками та готівкою в одному місці.</p>
+        </article>
+
+        <article class="card">
+          <h3>🎯 Бюджети</h3>
+          <p>Встановлення лімітів витрат за категоріями.</p>
+        </article>
+
+        <article class="card">
+          <h3>💳 Транзакції</h3>
+          <p>Повна історія операцій та швидкий пошук.</p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+  
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© 2026 FinanceManager. Усі права захищені.</p>
+      <ul class="footer__list">
+        <li><a href="#">Про нас</a></li>
+        <li><a href="#">Контакти</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
