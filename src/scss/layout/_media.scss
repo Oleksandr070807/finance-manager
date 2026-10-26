@@ -1,0 +1,53 @@
+// src/scss/layout/_media.scss
+
+/* 1. Ширина 1280 px та більше: обмежуємо контейнер і тримаємо 4 колонки */
+@media (min-width: 1280px) {
+  :root {
+    --container: 1200px;
+  }
+  .dashboard-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 2. Ширина до 992 px: перехід на 3 колонки */
+@media (max-width: 992px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 3. Ширина до 768 px: правила для планшетів і мобільних */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .balance-card {
+    padding: 24px;
+  }
+  
+  .balance-card__amount {
+    font-size: 2rem;
+  }
+  
+  .balance-card__stats {
+    gap: 24px;
+  }
+  
+  .footer__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* 4. Ширина до 360 px: малі мобільні екрани (1 колонка) */
+@media (max-width: 360px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding-inline: 12px;
+  }
+}

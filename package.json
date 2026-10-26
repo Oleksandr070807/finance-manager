@@ -1,0 +1,29 @@
+{
+  "name": "finance-manager",
+  "version": "1.0.0",
+  "description": "Наскрізний проєкт з дисципліни «WEB-програмування».  \r Виконав: Горбенко О. О., група КІ-24, варіант 6.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css": "sass --watch src/scss/main.scss:src/css/style.css",
+    "css:build": "sass src/scss/main.scss src/css/style.min.css --style=compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oleksandr070807/finance-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Oleksandr070807/finance-manager/issues"
+  },
+  "homepage": "https://github.com/Oleksandr070807/finance-manager#readme",
+  "devDependencies": {
+    "sass": "^1.106.1"
+  }
+}

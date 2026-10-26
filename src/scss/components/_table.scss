@@ -1,0 +1,64 @@
+.table-wrapper {
+  overflow-x: auto;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  margin-top: 16px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+
+  th, td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  th {
+    background-color: #f1f5f9;
+    color: var(--color-dark);
+    font-weight: 600;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:hover {
+    background-color: #f8fafc;
+  }
+
+  tfoot td {
+    font-weight: 700;
+    background-color: #f8fafc;
+    border-top: 2px solid var(--color-border);
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge--income {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.badge--expense {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.amount {
+  font-weight: 600;
+}
+
+.amount--income { color: var(--color-income); }
+.amount--expense { color: var(--color-expense); }
