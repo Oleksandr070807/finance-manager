@@ -1,0 +1,77 @@
+// src/scss/components/_card.scss
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+@keyframes fadeInp {
+  from { 
+    opacity: 0; 
+    transform: translateY(24px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: v.$color-card-bg;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius;
+  animation: fadeInp .6s ease-out both;
+  transition: transform .25s ease, box-shadow .25s ease;
+
+  // Ефект підняття картки при наведенні
+  &:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
+  }
+
+  &__title { 
+    font-size: 1.05rem; 
+    font-weight: 600; 
+  }
+
+  &__price { 
+    font-weight: 400; 
+    font-size: 1.15rem; 
+  }
+
+&__btn {
+    @include m.flex-center;
+    display: inline-block;
+    width: fit-content; // Додайте це, щоб кнопка не розтягувалася на всю ширину
+    // або align-self: flex-start;
+    padding: 12px 24px;
+    background: v.$color-primary;
+    color: #fff;
+    border: 0;
+    border-radius: v.$radius-sm;
+    cursor: pointer;
+    margin-top: auto;
+    transition: opacity .25s ease, transform .25s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  @include m.respond-to(md) { 
+    &__btn { 
+      transform: none; 
+    } 
+  }
+}
+
+// Послідовна поява карток через цикл @for
+@for $i from 1 through 8 {
+  .card:nth-child(#{$i}) { 
+    animation-delay: #{$i * 0.05}s; 
+  }
+}
+.card p {
+  font-weight: 300;
+}

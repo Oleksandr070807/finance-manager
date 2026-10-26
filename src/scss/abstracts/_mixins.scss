@@ -1,0 +1,30 @@
+// src/scss/abstracts/_mixins.scss
+@use "sass:map";
+@use "variables" as v;
+
+// 1. Міксин для центрування через Flexbox
+@mixin flex-center($justify: space-between, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// 2. Ваш міксин для адаптивності з контрольними точками
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == md {
+    @media (max-width: 768px) { @content; }
+  }
+  @if $breakpoint == lg {
+    @media (max-width: 992px) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: 1280px) { @content; }
+  }
+}
+
+// 3. Додатковий міксин через мапу брейкпоінтів
+@mixin media($key) {
+  @media (max-width: map.get(v.$breakpoints, $key)) {
+    @content;
+  }
+}

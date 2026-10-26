@@ -1,0 +1,39 @@
+// 1. Оголошуємо CSS-змінні в :root, щоб браузер і всі компоненти їх бачили
+:root {
+  --color-primary: #2563eb;
+  --color-dark: #0f172a;
+  --color-bg: #f8fafc;
+  --color-card-bg: #ffffff;
+  --color-text: #1e293b;
+  --color-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-income: #10b981;
+  --color-expense: #ef4444;
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --gap: 24px;
+  --container: 1280px;
+}
+
+// 2. Також дублюємо їх як SASS-змінні (якщо вимагає викладач чи методичка)
+$color-primary: #2563eb;
+$color-dark: #0f172a;
+$color-bg: #f8fafc;
+$color-card-bg: #ffffff;
+$color-text: #1e293b;
+$color-muted: #64748b;
+$color-border: #e2e8f0;
+$color-income: #10b981;
+$color-expense: #ef4444;
+
+$radius: 16px;
+$radius-sm: 10px;
+$gap: 24px;
+
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1280px
+);
