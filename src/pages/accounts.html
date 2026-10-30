@@ -3,23 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+  }
+</script>
   <title>FinanceManager — Рахунки</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/theme.min.css">
+    <link rel="stylesheet" href="../css/dark-theme.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container header__inner">
-      <a class="logo" href="../index.html">Finance<span>Manager</span></a>
-      <nav class="nav" aria-label="Головне меню">
-        <ul class="nav__list">
-          <li><a class="nav__link" href="../index.html">Головна</a></li>
-          <li><a class="nav__link nav__link--active" href="accounts.html">Рахунки</a></li>
-          <li><a class="nav__link" href="transactions.html">Транзакції</a></li>
-          <li><a class="nav__link" href="categories.html">Категорії</a></li>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="../index.html">
+        Finance <span class="text-primary">Manager</span>
+      </a>
+   
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false"
+              aria-label="Меню">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+   
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav__list gap-lg-3">
+          <li class="nav-item">
+            <a class="nav-link nav__link" href="../index.html">Головна</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav__link nav__link--active" href="accounts.html">Рахунки</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav__link" href="transactions.html">Транзакції</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle nav__link" href="#" role="button"
+               data-bs-toggle="dropdown">Категорії</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="categories.html">Усі категорії</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Доходи</a></li>
+              <li><a class="dropdown-item" href="#">Витрати</a></li>
+            </ul>
+          </li>
         </ul>
-      </nav>
+        <form class="d-flex ms-lg-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Пошук">
+          <button class="btn btn-outline-primary" type="submit">Знайти</button>
+        </form>
+        <button class="btn btn-sm btn-outline-secondary ms-2" id="themeBtn" title="Змінити тему">🌓</button>
+      </div>
     </div>
-  </header>
+  </nav>
   
   <main>
     <section class="hero">
@@ -35,7 +72,7 @@
         <article class="card">
           <h3 class="card__title">Банківський рахунок</h3>
           <p class="card__price">$12,840.20</p>
-          <a class="btn btn--sm" href="#">Керувати</a>
+          <a class="btn btn--primary card__btn" href="#">Керувати</a>
         </article>
       </div>
     </section>
@@ -55,5 +92,28 @@
       </ul>
     </div>
   </footer>
+<script>
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("themeBtn");
+
+  // Синхронізуємо стан при завантаженні сторінки
+  const currentSavedTheme = localStorage.getItem('theme');
+  if (currentSavedTheme) {
+    root.setAttribute('data-bs-theme', currentSavedTheme);
+  }
+
+  // При кліку змінюємо тему та одразу записуємо в localStorage для всього сайту
+  if (themeBtn) {
+    themeBtn.addEventListener("click", () => {
+      const currentTheme = root.getAttribute('data-bs-theme');
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      root.setAttribute('data-bs-theme', nextTheme);
+      localStorage.setItem('theme', nextTheme);
+    });
+  }
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 </body>
 </html>

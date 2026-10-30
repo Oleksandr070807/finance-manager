@@ -53,6 +53,29 @@
   border-bottom-color: var(--color-primary);
 }
 
+/* Адаптація під Bootstrap Navbar та поле пошуку */
+.navbar {
+  form[role="search"] {
+    max-width: 280px; /* Обмежуємо ширину пошуку, щоб він не був занадто великим */
+  }
+
+  /* Виправлення підкреслення для мобільного випадаючого меню (бургера) */
+  @media (max-width: 991.98px) {
+    .nav__link {
+      border-bottom: none;
+      border-left: 3px solid transparent;
+      padding-left: 12px;
+
+      &:hover,
+      &--active {
+        border-bottom-color: transparent;
+        border-left-color: var(--color-primary);
+        background-color: rgba(37, 99, 235, 0.05);
+      }
+    }
+  }
+}
+
 .header__actions {
   display: flex;
   align-items: center;

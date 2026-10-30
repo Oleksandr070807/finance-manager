@@ -54,10 +54,12 @@
     margin-top: auto;
     transition: opacity .25s ease, transform .25s ease;
 
-    &:hover {
-      opacity: 0.9;
-    }
+&:hover {
+    background-color: lighten(v.$color-primary, 8%); /* Робимо блакитний трішки світлішим при наведенні */
+    color: #fff; /* Залишаємо текст білим */
+    opacity: 1; /* Скасовуємо зайву прозорість */
   }
+}
 
   @include m.respond-to(md) { 
     &__btn { 

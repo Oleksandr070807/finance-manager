@@ -3,23 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+  }
+</script>
   <title>FinanceManager — Головна</title>
-  <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/theme.min.css">
+  <link rel="stylesheet" href="css/dark-theme.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container header__inner">
-      <a class="logo" href="index.html">Finance<span>Manager</span></a>
-      <nav class="nav" aria-label="Головне меню">
-        <ul class="nav__list">
-          <li><a class="nav__link nav__link--active" href="index.html">Головна</a></li>
-          <li><a class="nav__link" href="pages/accounts.html">Рахунки</a></li>
-          <li><a class="nav__link" href="pages/transactions.html">Транзакції</a></li>
-          <li><a class="nav__link" href="pages/categories.html">Категорії</a></li>
-        </ul>
-      </nav>
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">
+      Finance <span class="text-primary">Manager</span>
+    </a>
+ 
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false"
+            aria-label="Меню">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+ 
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav__list">
+        <li class="nav-item">
+          <a class="nav-link nav__link nav__link--active" href="index.html">Головна</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav__link" href="pages/accounts.html">Рахунки</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav__link" href="pages/transactions.html">Транзакції</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav__link" href="#" role="button"
+             data-bs-toggle="dropdown">Категорії</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="pages/categories.html">Усі категорії</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Доходи</a></li>
+            <li><a class="dropdown-item" href="#">Витрати</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Пошук">
+        <button class="btn btn-outline-primary" type="submit">Знайти</button>
+      </form>
+
+      <!-- Кнопка перемикача темної теми (Крок 7) -->
+      <button class="btn btn-sm btn-outline-secondary" id="themeBtn" title="Змінити тему">🌓</button>
     </div>
-  </header>
+  </div>
+</nav>
   
   <main class="main container">
     
@@ -31,7 +70,10 @@
           <h1 class="balance-card__amount">$84,320.65</h1>
           <p class="balance-card__trend">↗ $2,481.20 цього місяця</p>
         </div>
-        <a class="btn btn--primary" href="pages/transactions.html">+ Додати транзакцію</a>
+        <!-- Кнопка тепер викликає модальне вікно замість переходу на іншу сторінку -->
+        <button class="btn btn--primary" type="button" data-bs-toggle="modal" data-bs-target="#transactionModal">
+          + Додати транзакцію
+        </button>
       </div>
       <div class="balance-card__stats">
         <div class="stat-item">
@@ -49,33 +91,47 @@
       </div>
     </section>
 
-    <!-- 2. Блок із чотирьох переваг (Можливості системи) засобами CSS Grid -->
-    <section class="section">
-      <h2 class="section__title" style="margin-bottom: 20px;">Можливості системи</h2>
-      <div class="dashboard-grid">
-        
+<!-- Блок із чотирьох переваг (Можливості системи) на сітці Bootstrap 5 -->
+<section class="py-4">
+  <div class="container">
+    <h2 class="section__title" style="margin-bottom: 20px;">Можливості системи</h2>
+    <div class="row g-4">
+      
+      <div class="col-12 col-sm-6 col-lg-3">
         <article class="card">
-          <h3>📊 Аналітика</h3>
+          <h3 class="card__title">📊 Аналітика</h3>
           <p>Контроль доходи/витрати в реальному часі.</p>
+          <a class="btn btn--primary card__btn" href="pages/transactions.html">Детальніше</a>
         </article>
-
-        <article class="card">
-          <h3>🏛️ Рахунки</h3>
-          <p>Управління картками та готівкою в одному місці.</p>
-        </article>
-
-        <article class="card">
-          <h3>🎯 Бюджети</h3>
-          <p>Встановлення лімітів витрат за категоріями.</p>
-        </article>
-
-        <article class="card">
-          <h3>💳 Транзакції</h3>
-          <p>Повна історія операцій та швидкий пошук.</p>
-        </article>
-
       </div>
-    </section>
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <article class="card">
+          <h3 class="card__title">🏛️ Рахунки</h3>
+          <p>Управління картками та готівкою в одному місці.</p>
+          <a class="btn btn--primary card__btn" href="pages/accounts.html">Детальніше</a>
+        </article>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <article class="card">
+          <h3 class="card__title">🎯 Бюджети</h3>
+          <p>Встановлення лімітів витрат за категоріями.</p>
+          <a class="btn btn--primary card__btn" href="pages/categories.html">Детальніше</a>
+        </article>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3">
+        <article class="card">
+          <h3 class="card__title">💳 Транзакції</h3>
+          <p>Повна історія операцій та швидкий пошук.</p>
+          <a class="btn btn--primary card__btn" href="pages/transactions.html">Детальніше</a>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
 
   </main>
   
@@ -88,5 +144,129 @@
       </ul>
     </div>
   </footer>
+
+<div class="flip-card">
+  <div class="flip-card__inner">
+    <div class="flip-card__front">
+      <h3>📊 Аналітика рахунків</h3>
+      <p>Наведіть, щоб дізнатися більше</p>
+    </div>
+    <a href="pages/accounts.html" class="flip-card__back flip-card__link">
+      <h3>Перейти до Рахунків</h3>
+      <p>Управління картками та готівкою →</p>
+    </a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
+<!-- Модальне вікно з формою та валідацією Bootstrap (Крок 5) -->
+<div class="modal fade" id="transactionModal" tabindex="-1" aria-labelledby="transactionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="transactionModalLabel">Додати нову транзакцію</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрити"></button>
+      </div>
+      
+      <div class="modal-body">
+        <form class="row g-3 needs-validation" novalidate id="transactionForm">
+          
+          <!-- Опис транзакції -->
+          <div class="col-md-6">
+            <label for="desc" class="form-label">Опис операції</label>
+            <input type="text" class="form-control" id="desc" required minlength="3">
+            <div class="invalid-feedback">Вкажіть опис (мінімум 3 символи).</div>
+          </div>
+          
+          <!-- Сума -->
+          <div class="col-md-6">
+            <label for="amount" class="form-label">Сума ($)</label>
+            <div class="input-group">
+              <span class="input-group-text">$</span>
+              <input type="number" class="form-control" id="amount" required min="1" step="0.01">
+              <div class="invalid-feedback">Введіть коректну суму.</div>
+            </div>
+          </div>
+
+          <!-- Категорія -->
+          <div class="col-md-6">
+            <label for="category" class="form-label">Категорія</label>
+            <select class="form-select" id="category" required>
+              <option selected disabled value="">Оберіть категорію...</option>
+              <option>Зарплата</option>
+              <option>Продукти</option>
+              <option>Транспорт</option>
+              <option>Розваги</option>
+            </select>
+            <div class="invalid-feedback">Будь ласка, оберіть категорію.</div>
+          </div>
+
+          <!-- Тип операції -->
+          <div class="col-md-6">
+            <label for="type" class="form-label">Тип</label>
+            <select class="form-select" id="type" required>
+              <option selected disabled value="">Оберіть тип...</option>
+              <option value="income">Дохід</option>
+              <option value="expense">Витрата</option>
+            </select>
+            <div class="invalid-feedback">Оберіть тип операції.</div>
+          </div>
+
+          <!-- Чекбокс згоди -->
+          <div class="col-12 form-check ms-2 mt-3">
+            <input class="form-check-input" type="checkbox" id="confirmData" required>
+            <label class="form-check-label" for="confirmData">Підтверджую правильність введених даних</label>
+            <div class="invalid-feedback">Ви повинні підтвердити дані перед збереженням.</div>
+          </div>
+
+          <!-- Кнопка відправки -->
+          <div class="col-12 mt-4">
+            <button class="btn btn-primary w-100" type="submit">Зберегти транзакцію</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript для валідації форми від Bootstrap -->
+<script>
+  document.querySelectorAll(".needs-validation").forEach((form) => {
+    form.addEventListener("submit", (e) => {
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      form.classList.add("was-validated");
+    });
+  });
+</script>
+<script>
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("themeBtn");
+
+  // Синхронізуємо стан при завантаженні сторінки
+  const currentSavedTheme = localStorage.getItem('theme');
+  if (currentSavedTheme) {
+    root.setAttribute('data-bs-theme', currentSavedTheme);
+  }
+
+  // При кліку змінюємо тему та одразу записуємо в localStorage для всього сайту
+  if (themeBtn) {
+    themeBtn.addEventListener("click", () => {
+      const currentTheme = root.getAttribute('data-bs-theme');
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      root.setAttribute('data-bs-theme', nextTheme);
+      localStorage.setItem('theme', nextTheme);
+    });
+  }
+</script>
+
+
 </body>
 </html>

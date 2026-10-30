@@ -1,4 +1,6 @@
-// src/scss/main.scss
+// 1. Спочатку підключаємо сам Bootstrap (через @use або @import)
+@use "bootstrap/scss/bootstrap";
+
 @use "abstracts/variables";
 @use "abstracts/mixins";
 @use "base/reset";
