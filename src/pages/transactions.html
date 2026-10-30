@@ -3,51 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+  }
+</script>
   <title>FinanceManager — Транзакції</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/theme.min.css">
+      <link rel="stylesheet" href="../css/dark-theme.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container header__inner">
-      <a class="logo" href="../index.html">Finance<span>Manager</span></a>
-      <nav class="nav" aria-label="Головне меню">
-        <ul class="nav__list">
-          <li><a class="nav__link" href="../index.html">Головна</a></li>
-          <li><a class="nav__link" href="accounts.html">Рахунки</a></li>
-          <li><a class="nav__link nav__link--active" href="transactions.html">Транзакції</a></li>
-          <li><a class="nav__link" href="categories.html">Категорії</a></li>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="../index.html">
+        Finance <span class="text-primary">Manager</span>
+      </a>
+   
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false"
+              aria-label="Меню">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+   
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav__list gap-lg-3">
+          <li class="nav-item">
+            <a class="nav-link nav__link" href="../index.html">Головна</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav__link" href="accounts.html">Рахунки</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav__link nav__link--active" href="transactions.html">Транзакції</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle nav__link" href="#" role="button"
+               data-bs-toggle="dropdown">Категорії</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="categories.html">Усі категорії</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Доходи</a></li>
+              <li><a class="dropdown-item" href="#">Витрати</a></li>
+            </ul>
+          </li>
         </ul>
-      </nav>
+        <form class="d-flex ms-lg-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Пошук">
+          <button class="btn btn-outline-primary" type="submit">Знайти</button>
+        </form>
+        <button class="btn btn-sm btn-outline-secondary ms-2" id="themeBtn" title="Змінити тему">🌓</button>
+      </div>
     </div>
-  </header>
+  </nav>
   
-  <main class="main container">
+  <main class="main container py-4">
     <!-- 1. Заголовок сторінки (h1) -->
-    <section class="page-header">
+    <section class="page-header mb-4">
       <h1 class="page-title">Аналіз та історія транзакцій</h1>
       <p class="page-subtitle">Детальний огляд фінансових операцій, аналітика та фінансові поради.</p>
     </section>
 
     <!-- 2. Цитата (blockquote) -->
-    <section class="content-block">
+    <section class="content-block mb-4">
       <blockquote class="quote">
         <p>«Правильне управління фінансами — це не про відмову від задоволень, а про свідомий розподіл ресурсів для досягнення довгострокових цілей.»</p>
         <cite>— Фінансовий путівник FinanceManager</cite>
       </blockquote>
     </section>
 
-    <!-- 3. Зображення з підписом (figure, img, figcaption) -->
-    <section class="content-block">
+    <!-- 3. Зображення з підписом -->
+    <section class="content-block mb-4">
       <figure class="media-card">
         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Графіки аналізу доходів і витрат на екрані" class="media-card__img">
         <figcaption class="media-card__caption">Мал. 1. Наочна візуалізація щомісячної структури витрат та заощаджень.</figcaption>
       </figure>
     </section>
 
-    <!-- 4. Списки (ul, ol) та заголовки (h2, h3) -->
-    <section class="content-block">
-      <h2 class="section__title">Рекомендації щодо ведення обліку</h2>
-      
+    <!-- 4. Списки (Рекомендації) -->
+    <section class="content-block mb-5">
+      <h2 class="section__title mb-3">Рекомендації щодо ведення обліку</h2>
       <div class="lists-grid">
         <div class="list-card">
           <h3>Основні правила:</h3>
@@ -57,7 +93,6 @@
             <li>Формувати фінансову «подушку безпеки».</li>
           </ul>
         </div>
-
         <div class="list-card">
           <h3>Кроки аналізу щомісячного бюджету:</h3>
           <ol class="styled-list styled-list--number">
@@ -69,58 +104,104 @@
       </div>
     </section>
 
-    <!-- 5. Семантична таблиця (table) -->
+    <!-- 5. Останні операції з бічним фільтром (Offcanvas / Крок 4) -->
     <section class="content-block">
-      <h2 class="section__title">Останні фінансові операції</h2>
+      <h2 class="section__title mb-3">Останні фінансові операції</h2>
       
-      <div class="table-wrapper">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Дата</th>
-              <th>Категорія</th>
-              <th>Опис</th>
-              <th>Тип</th>
-              <th>Сума ($)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>24.10.2026</td>
-              <td>Зарплата</td>
-              <td>Acme Co. Payroll</td>
-              <td><span class="badge badge--income">Дохід</span></td>
-              <td class="amount amount--income">+$4,850.00</td>
-            </tr>
-            <tr>
-              <td>23.10.2026</td>
-              <td>Продукти</td>
-              <td>Супермаркет «Сільпо»</td>
-              <td><span class="badge badge--expense">Витрата</span></td>
-              <td class="amount amount--expense">-$120.50</td>
-            </tr>
-            <tr>
-              <td>21.10.2026</td>
-              <td>Транспорт</td>
-              <td>Заправка АЗС</td>
-              <td><span class="badge badge--expense">Витрата</span></td>
-              <td class="amount amount--expense">-$65.00</td>
-            </tr>
-            <tr>
-              <td>19.10.2026</td>
-              <td>Розваги</td>
-              <td>Квитки у кінотеатр</td>
-              <td><span class="badge badge--expense">Витрата</span></td>
-              <td class="amount amount--expense">-$35.00</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="4">Підсумок за період:</td>
-              <td class="amount amount--income">+$4,629.50</td>
-            </tr>
-          </tfoot>
-        </table>
+      <!-- Кнопка виклику фільтра на мобільних екранах -->
+      <button class="btn btn-outline-secondary d-lg-none mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#filter">
+        Фільтр операцій
+      </button>
+
+      <div class="row g-4">
+        <!-- Ліва колонка: Фільтр -->
+        <aside class="col-lg-3">
+          <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="filter">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title">Фільтр</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#filter" aria-label="Закрити"></button>
+            </div>
+            <div class="offcanvas-body flex-column p-3 border rounded-3 bg-white">
+              <h6 class="fw-bold mb-3">Тип операції</h6>
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="c1" checked>
+                <label class="form-check-label" for="c1">Доходи</label>
+              </div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="c2" checked>
+                <label class="form-check-label" for="c2">Витрати</label>
+              </div>
+              
+              <label for="amountRange" class="form-label fw-bold mt-2">Максимальна сума ($)</label>
+              <input type="range" class="form-range" id="amountRange" min="0" max="10000" step="100">
+              
+              <button class="btn btn-primary w-100 mt-3" type="button">Застосувати</button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Права колонка: Сортування та таблиця -->
+        <div class="col-lg-9">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-secondary">Знайдено 4 операції</span>
+            <select class="form-select w-auto">
+              <option>Спочатку новіші</option>
+              <option>Спочатку старіші</option>
+              <option>За сумою (зростання)</option>
+            </select>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Дата</th>
+                  <th>Категорія</th>
+                  <th>Опис</th>
+                  <th>Тип</th>
+                  <th>Сума ($)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>24.10.2026</td>
+                  <td>Зарплата</td>
+                  <td>Acme Co. Payroll</td>
+                  <td><span class="badge badge--income">Дохід</span></td>
+                  <td class="amount amount--income">+$4,850.00</td>
+                </tr>
+                <tr>
+                  <td>23.10.2026</td>
+                  <td>Продукти</td>
+                  <td>Супермаркет «Сільпо»</td>
+                  <td><span class="badge badge--expense">Витрата</span></td>
+                  <td class="amount amount--expense">-$120.50</td>
+                </tr>
+                <tr>
+                  <td>21.10.2026</td>
+                  <td>Транспорт</td>
+                  <td>Заправка АЗС</td>
+                  <td><span class="badge badge--expense">Витрата</span></td>
+                  <td class="amount amount--expense">-$65.00</td>
+                </tr>
+                <tr>
+                  <td>19.10.2026</td>
+                  <td>Розваги</td>
+                  <td>Квитки у кінотеатр</td>
+                  <td><span class="badge badge--expense">Витрата</span></td>
+                  <td class="amount amount--expense">-$35.00</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4">Підсумок за період:</td>
+                  <td class="amount amount--income">+$4,629.50</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
@@ -134,5 +215,28 @@
       </ul>
     </div>
   </footer>
+<script>
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("themeBtn");
+
+  // Синхронізуємо стан при завантаженні сторінки
+  const currentSavedTheme = localStorage.getItem('theme');
+  if (currentSavedTheme) {
+    root.setAttribute('data-bs-theme', currentSavedTheme);
+  }
+
+  // При кліку змінюємо тему та одразу записуємо в localStorage для всього сайту
+  if (themeBtn) {
+    themeBtn.addEventListener("click", () => {
+      const currentTheme = root.getAttribute('data-bs-theme');
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      root.setAttribute('data-bs-theme', nextTheme);
+      localStorage.setItem('theme', nextTheme);
+    });
+  }
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  
 </body>
 </html>

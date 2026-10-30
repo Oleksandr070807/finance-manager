@@ -25,5 +25,8 @@
   "homepage": "https://github.com/Oleksandr070807/finance-manager#readme",
   "devDependencies": {
     "sass": "^1.106.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3"
   }
 }

@@ -1,0 +1,499 @@
+// ==========================================
+// 1. ПЕРЕВИЗНАЧЕННЯ ЗМІННИХ BOOTSTRAP ТА АБСТРАКЦІЇ
+// ==========================================
+$primary: #2563eb;
+$secondary: #64748b;
+$success: #16a34a;
+$border-radius: .75rem;
+$grid-gutter-width: 1.75rem;
+$font-family-sans-serif: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$enable-shadows: true;
+
+// Змінні з твоїх абстракцій
+$color-primary: #2563eb;
+$color-dark: #0f172a;
+$color-bg: #f8fafc;
+$color-card-bg: #ffffff;
+$color-text: #1e293b;
+$color-muted: #64748b;
+$color-border: #e2e8f0;
+$color-income: #16a34a;
+$color-expense: #dc2626;
+
+$radius: 16px;
+$radius-sm: 10px;
+$gap: 24px;
+
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1280px
+);
+
+// --- Міксини ---
+@mixin flex-center($justify: space-between, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == md { @media (max-width: 768px) { @content; } }
+  @if $breakpoint == lg { @media (max-width: 992px) { @content; } }
+  @if $breakpoint == xl { @media (min-width: 1280px) { @content; } }
+}
+
+// ==========================================
+// 2. ІМПОРТ ОРИГІНАЛЬНОГО BOOTSTRAP
+// ==========================================
+@import "bootstrap/scss/bootstrap";
+
+// ==========================================
+// 3. CSS-ЗМІННІ (:root)
+// ==========================================
+:root {
+  --color-primary: #{$color-primary};
+  --color-dark: #{$color-dark};
+  --color-bg: #{$color-bg};
+  --color-card-bg: #{$color-card-bg};
+  --color-text: #{$color-text};
+  --color-muted: #{$color-muted};
+  --color-border: #{$color-border};
+  --color-income: #{$color-income};
+  --color-expense: #{$color-expense};
+
+  --radius: #{$radius};
+  --radius-sm: #{$radius-sm};
+  --gap: #{$gap};
+  --container: 1280px;
+}
+
+// ==========================================
+// 4. RESET ТА БАЗОВІ СТИЛІ (TYPOGRAPHY)
+// ==========================================
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+h1 { font-size: 2.2rem; font-weight: 700; }
+h2 { font-size: 1.25rem; font-weight: 600; }
+h3 { font-size: 1rem; font-weight: 600; }
+
+// ==========================================
+// 5. СІТКА ТА КОМПЛЕКСНІ КОМПОНЕНТИ
+// ==========================================
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gap);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--gap);
+}
+
+// --- Header / Navbar ---
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-card-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__inner {
+  @include flex-center(space-between, center);
+  height: 80px;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-dark);
+
+  span {
+    color: var(--color-primary);
+  }
+}
+
+.nav__list {
+  display: flex;
+  gap: 32px;
+}
+
+.nav__link {
+  color: var(--color-muted);
+  font-weight: 500;
+  padding-block: 8px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+
+  &:hover, &--active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
+}
+
+// --- Balance Card ---
+.balance-card {
+  background-color: $color-dark;
+  color: #fff;
+  padding: 36px;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 24px;
+  margin-bottom: 40px;
+
+  &__top {
+    @include flex-center(space-between, flex-start);
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  &__label {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  &__amount {
+    font-size: 2.75rem;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  &__trend {
+    color: #34d399;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+
+  &__stats {
+    display: flex;
+    gap: 48px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 24px;
+    flex-wrap: wrap;
+  }
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+
+  &--income { color: #34d399; }
+  &--expense { color: #f87171; }
+}
+
+// --- Flip Card ---
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  max-width: 400px;
+  height: 120px;
+  margin: 24px auto;
+  perspective: 1000px;
+
+  &__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  &:hover &__inner {
+    transform: rotateY(180deg);
+  }
+
+  &__front, &__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    @include flex-center(center, center);
+    flex-direction: column;
+    padding: 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+
+  &__front {
+    background-color: var(--color-card-bg);
+    color: var(--color-text);
+  }
+
+  &__back {
+    background-color: $color-dark;
+    color: #ffffff;
+    transform: rotateY(180deg);
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #ffffff !important;
+    cursor: pointer;
+    @include flex-center(center, center);
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    
+    h3, p { color: #ffffff; }
+    &:hover { opacity: 0.9; }
+  }
+}
+
+// --- Tables & Badges ---
+.table-wrapper {
+  overflow-x: auto;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  margin-top: 16px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+
+  th, td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  th {
+    background-color: #f1f5f9;
+    color: var(--color-dark);
+    font-weight: 600;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background-color: #f8fafc; }
+
+  tfoot td {
+    font-weight: 700;
+    background-color: #f8fafc;
+    border-top: 2px solid var(--color-border);
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge--income { background-color: #d1fae5; color: #065f46; }
+.badge--expense { background-color: #fee2e2; color: #991b1b; }
+
+.amount { font-weight: 600; }
+.amount--income { color: var(--color-income); }
+.amount--expense { color: var(--color-expense); }
+
+// --- Content & Quotes ---
+.page-header { margin-bottom: 8px; }
+.page-title { font-size: 2rem; font-weight: 700; color: var(--color-dark); }
+.page-subtitle { color: var(--color-muted); font-size: 1rem; margin-top: 4px; }
+.content-block { margin-bottom: 24px; }
+
+.quote {
+  background-color: #eff6ff;
+  border-left: 4px solid var(--color-primary);
+  padding: 20px 24px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 0;
+  
+  p {
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--color-dark);
+    margin-bottom: 8px;
+  }
+  
+  cite {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    font-style: normal;
+    font-weight: 600;
+  }
+}
+
+.media-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 0;
+}
+
+.media-card__img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.media-card__caption {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-align: center;
+  font-style: italic;
+}
+
+// --- Lists & Grids ---
+.lists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--gap);
+  margin-top: 16px;
+}
+
+.list-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  
+  h3 {
+    margin-bottom: 12px;
+    color: var(--color-dark);
+  }
+}
+
+.styled-list {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--color-text);
+}
+
+.styled-list--bullet { list-style-type: disc; }
+.styled-list--number { list-style-type: decimal; }
+
+// --- Footer ---
+.footer {
+  background-color: var(--color-dark);
+  color: #94a3b8;
+  padding-block: 32px;
+  margin-top: 48px;
+  font-size: 0.9rem;
+}
+
+.footer__inner {
+  @include flex-center(space-between, center);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer__list {
+  display: flex;
+  gap: 24px;
+  a:hover { color: #fff; }
+}
+
+// --- Buttons & Fixes ---
+.btn--primary, .btn-primary {
+  background-color: $primary !important;
+  border-color: $primary !important;
+  color: #fff !important;
+  
+  &:hover {
+    background-color: darken($primary, 8%) !important;
+    border-color: darken($primary, 8%) !important;
+  }
+}
+
+.card-hover { 
+  transition: transform .25s ease, box-shadow .25s ease; 
+  &:hover { 
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,.12); 
+  }
+}
+
+// --- Responsive Media Queries ---
+@include respond-to(md) {
+  .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+  .balance-card { padding: 24px; }
+  .balance-card__amount { font-size: 2rem; }
+  .balance-card__stats { gap: 24px; }
+  .footer__inner { flex-direction: column; text-align: center; }
+}
+/* Примусовий ефект підняття карток при наведенні */
+.dashboard-grid > *, 
+.list-card, 
+.media-card, 
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+
+  &:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+  }
+}
+/* Точковий ефект підняття для карток Bootstrap у сітці */
+.dashboard-grid .card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+
+  &:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+  }
+}
