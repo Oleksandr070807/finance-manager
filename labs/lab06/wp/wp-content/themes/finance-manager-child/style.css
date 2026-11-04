@@ -1,0 +1,9 @@
+/*
+Theme Name:   Finance-Manager Child
+Template:     twentytwentyfour
+Version:      1.0
+Text Domain:  finance-manager-child
+*/
+
+.site-title { letter-spacing: -.5px; }
+.wp-block-post-title a:hover { color: #0f766e; }
